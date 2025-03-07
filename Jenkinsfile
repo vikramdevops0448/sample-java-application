@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'docker-agent' }
 
     environment {
         DOCKER_IMAGE = 'vikram0448/sample-java-app'
