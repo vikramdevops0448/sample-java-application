@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'vikram0448/sample-java-app'
         REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')
+        PATH = "/usr/local/bin:${env.PATH}"
     }
 
     stages {
