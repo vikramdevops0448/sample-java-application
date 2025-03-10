@@ -27,12 +27,14 @@ pipeline {
                 }
             }
         }
-
         stage('Push Docker Image') {
+            environment {
+                DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
+            }
             steps {
                 script {
-                    withDockerRegistry([credentialsId: 'dockerhub-credentials', url: '']) {
-                        sh "docker push $DOCKER_IMAGE"
+                    withDockerRegistry([ credentialsId: DOCKER_CREDENTIALS_ID, url: 'https://index.docker.io/v1/' ]) {
+                        docker.image("${DOCKER_IMAGE}:latest").push()
                     }
                 }
             }
