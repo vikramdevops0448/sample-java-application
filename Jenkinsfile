@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'vikram0448/sample-java-app'
-        REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')
+        /*REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')*/
         PATH = "/usr/local/bin:${env.PATH}"
     }
 
@@ -28,13 +28,13 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            environment {
+            /*environment {
                 DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
-            }
+            }*/
             steps {
                 sh '''
                     echo "Logging in to Docker Hub..."
-                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    echo Vn1vk2vj3@93105 | docker login -u vikram0448 --password-stdin
 
                     echo "Pushing Docker image..."
                     docker push $DOCKER_IMAGE:latest
