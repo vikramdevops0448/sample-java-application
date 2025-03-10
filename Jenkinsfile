@@ -2,7 +2,7 @@ pipeline {
     agent { label 'docker-agent' }
 
     environment {
-        DOCKER_IMAGE = 'vikram0448/sample-java-app'
+        DOCKER_IMAGE = 'vikram0448/sample'
         /*REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')*/
         PATH = "/usr/local/bin:${env.PATH}"
     }
@@ -28,17 +28,18 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            /*environment {
+            environment {
                 DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
-            }*/
+            }
             steps {
-                sh '''
-                    echo "Logging in to Docker Hub..."
-                    echo Vn1vk2vj3@93105 | docker login -u vikram0448 --password-stdin
-
-                    echo "Pushing Docker image..."
-                    docker push $DOCKER_IMAGE:latest
-                '''
+                script {
+                    withDockerRegistry([ credentialsId: DOCKER_CREDENTIALS_ID, url: 'https://index.docker.io/v1/' ]) {
+                        sh '''
+                            echo "Pushing Docker image..."
+                            docker push $DOCKER_IMAGE:latest
+                        '''
+                    }
+                }
             }
         }
     }
