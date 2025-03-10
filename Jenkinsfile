@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker.build('sample-java', '-f Dockerfile .')"
+                  sh  "docker build -f /Users/vikram/.jenkins/workspace/java/Dockerfile ."
                 }
             }
         }
