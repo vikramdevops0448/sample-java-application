@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                  docker.build('my-image-name', '-f /Users/vikram/.jenkins/workspace/java/Dockerfile .')
+                  docker.build('my-image-name', '-f /Users/vikram/.jenkins/workspace/java/ .')
                 }
             }
         }
