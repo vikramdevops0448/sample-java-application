@@ -32,11 +32,13 @@ pipeline {
                 DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
             }
             steps {
-                script {
-                    withDockerRegistry([ credentialsId: DOCKER_CREDENTIALS_ID, url: 'https://index.docker.io/v1/' ]) {
-                        docker.image("${DOCKER_IMAGE}:latest").push()
-                    }
-                }
+                sh '''
+                    echo "Logging in to Docker Hub..."
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+                    echo "Pushing Docker image..."
+                    docker push $DOCKER_IMAGE:latest
+                '''
             }
         }
     }
