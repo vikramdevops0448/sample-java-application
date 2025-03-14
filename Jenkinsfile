@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image') {
+        /*stage('Push Docker Image') {
             environment {
                 DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
             }
@@ -52,7 +52,7 @@ pipeline {
             echo 'Pipeline failed. Check the logs!'
         }
     }
-}
+}*/
 
 
 
