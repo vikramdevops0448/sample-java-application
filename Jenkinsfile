@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'vikram0448/sample'
-        /*REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')*/
+        // REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')
         PATH = "/usr/local/bin:${env.PATH}"
     }
 
@@ -23,11 +23,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                   sh  "docker build -f Dockerfile ."
+                    sh "docker build -f Dockerfile ."
                 }
             }
         }
-        /*stage('Push Docker Image') {
+
+        /*
+        stage('Push Docker Image') {
             environment {
                 DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'  // ID of Docker Hub credentials in Jenkins
             }
@@ -42,6 +44,8 @@ pipeline {
                 }
             }
         }
+        */
+
     }
 
     post {
@@ -51,7 +55,7 @@ pipeline {
         failure {
             echo 'Pipeline failed. Check the logs!'
         }
-    }*/
+    }
 }
         
 
