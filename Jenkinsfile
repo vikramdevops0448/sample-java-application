@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker-agent' }
+    agent any
 
     environment {
         DOCKER_IMAGE = 'vikram0448/sample'
@@ -51,9 +51,8 @@ pipeline {
         failure {
             echo 'Pipeline failed. Check the logs!'
         }
-    }
-}*/
-    }
+    }*/
+}
         
 
 
